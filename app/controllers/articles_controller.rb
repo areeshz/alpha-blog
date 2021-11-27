@@ -12,6 +12,10 @@ class ArticlesController < ApplicationController
 		@article = Article.new
 	end
 
+	def edit
+		@article = Article.find(params[:id])
+	end
+
 	def create
 		# render plain: params[:article] # this can be used to plainly render this value back on the page, as another debugging tool
 		@article = Article.new(params.require(:article).permit(:title, :description))
@@ -23,7 +27,17 @@ class ArticlesController < ApplicationController
 			# as an alternative shorthand, you can do the following and rails will know to redirect to that article
 			redirect_to @article
 		else
-			render 'new'
+			render 'new' # re-renders the 'new' form, but now the article instance variable will have errors to display
+		end
+	end
+
+	def update
+		@article = Article.find(params[:id])
+		if @article.update(params.require(:article).permit(:title, :description))
+			flash[:notice] = "Article was created successfully."
+			redirect_to @article
+		else
+			render 'edit' # re-renders the 'edit' form, but now the article instance variable will have errors to display
 		end
 	end
 end
