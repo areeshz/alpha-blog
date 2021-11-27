@@ -9,15 +9,21 @@ class ArticlesController < ApplicationController
 	end
 
 	def new
+		@article = Article.new
 	end
 
 	def create
 		# render plain: params[:article] # this can be used to plainly render this value back on the page, as another debugging tool
 		@article = Article.new(params.require(:article).permit(:title, :description))
 		# render plain: @article.inspect
-		@article.save
-		# redirect_to article_path(@article)
-		# as an alternative shorthand, you can do the following and rails will know to redirect to that article
-		redirect_to @article
+		if @article.save
+			# use a flash helper with a message
+			flash[:notice] = "Article was created successfully."
+			# redirect_to article_path(@article)
+			# as an alternative shorthand, you can do the following and rails will know to redirect to that article
+			redirect_to @article
+		else
+			render 'new'
+		end
 	end
 end
