@@ -1,6 +1,9 @@
 class ArticlesController < ApplicationController
+	# the following line causes the "set_article" method to be run before the mentioned actions
+	# it seemingly sets the @article instance variable within the scope of those methods / actions
+	before_action :set_article, only: [:show, :edit, :update, :destroy]
+
 	def show
-		@article = Article.find(params[:id])
 		# byebug # used to stop execution and debug within the server console
 	end
 
@@ -13,12 +16,11 @@ class ArticlesController < ApplicationController
 	end
 
 	def edit
-		@article = Article.find(params[:id])
 	end
 
 	def create
 		# render plain: params[:article] # this can be used to plainly render this value back on the page, as another debugging tool
-		@article = Article.new(params.require(:article).permit(:title, :description))
+		@article = Article.new(article_params)
 		# render plain: @article.inspect
 		if @article.save
 			# use a flash helper with a message
@@ -32,8 +34,7 @@ class ArticlesController < ApplicationController
 	end
 
 	def update
-		@article = Article.find(params[:id])
-		if @article.update(params.require(:article).permit(:title, :description))
+		if @article.update(article_params)
 			flash[:notice] = "Article was updated successfully."
 			redirect_to @article
 		else
@@ -42,8 +43,18 @@ class ArticlesController < ApplicationController
 	end
 
 	def destroy
-		@article = Article.find(params[:id])
 		@article.destroy
 		redirect_to articles_path
 	end
+
+	private
+
+	def set_article
+		@article = Article.find(params[:id])
+	end
+
+	def article_params
+		params.require(:article).permit(:title, :description)
+	end
+
 end
