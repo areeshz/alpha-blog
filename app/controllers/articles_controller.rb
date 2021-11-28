@@ -34,7 +34,7 @@ class ArticlesController < ApplicationController
 	def update
 		@article = Article.find(params[:id])
 		if @article.update(params.require(:article).permit(:title, :description))
-			flash[:notice] = "Article was created successfully."
+			flash[:notice] = "Article was updated successfully."
 			redirect_to @article
 		else
 			render 'edit' # re-renders the 'edit' form, but now the article instance variable will have errors to display
