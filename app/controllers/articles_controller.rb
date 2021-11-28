@@ -40,4 +40,10 @@ class ArticlesController < ApplicationController
 			render 'edit' # re-renders the 'edit' form, but now the article instance variable will have errors to display
 		end
 	end
+
+	def destroy
+		@article = Article.find(params[:id])
+		@article.destroy
+		redirect_to articles_path
+	end
 end
