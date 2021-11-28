@@ -9,30 +9,8 @@
 <body>
 	<h1>Edit article</h1>
 
-	<% if @article.errors.any? %>
-		<h2>The following errors prevented the article from being saved:</h2>
-		<ul class="red">
-			<% @article.errors.full_messages.each do |msg| %>
-				<li><%= msg %></li>
-			<% end %>
-		</ul>
-	<% end %>
+	<%= render 'form' %> <!-- unlike the application.html.erb file, we do not need to specify the folder name here (i.e. 'articles/form') -->
 
-	<%= form_with(model: @article, local: true) do |f| %>
-		<p>
-			<%= f.label :title %>
-			<br/>
-			<%= f.text_field :title %>
-		</p>
-		<p>
-			<%= f.label :description %>
-			<br/>
-			<%= f.text_area :description %>
-		</p>
-		<p>
-			<%= f.submit %>
-			<%= link_to 'Cancel', article_path(@article) %>
-		</p>
-	<% end %>
+	<%= link_to 'Cancel', article_path(@article) %>
 </body>
 </html>
