@@ -1,5 +1,9 @@
 @import 'bootstrap/dist/css/bootstrap';
 
-.navbar {
-	background-color: #D4A5A5 !important;
+.jumbotron {
+	background-image: asset-url('writing_unsplashed.jpg');
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 425px;
 }
