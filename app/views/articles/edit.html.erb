@@ -7,10 +7,14 @@
 	<title>Document</title>
 </head>
 <body>
-	<h1>Edit article</h1>
+	<div id="page-content">
+		<h1 class="text-center pt-4 pb-4">Edit article</h1>
 
-	<%= render 'form' %> <!-- unlike the application.html.erb file, we do not need to specify the folder name here (i.e. 'articles/form') -->
+		<%= render 'form' %> <!-- unlike the application.html.erb file, we do not need to specify the folder name here (i.e. 'articles/form') -->
 
-	<%= link_to 'Cancel', article_path(@article) %>
+		<div class="container text-center">
+			<%= link_to 'Cancel', article_path(@article), class: "text-info" %>
+		</div>
+	</div>
 </body>
 </html>
