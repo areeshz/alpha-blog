@@ -11,4 +11,5 @@ class User < ApplicationRecord
 		length: {maximum: 105}, format: {with: VALID_EMAIL_REGEX}
 
 	has_many :articles
+	has_secure_password
 end
