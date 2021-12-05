@@ -3,5 +3,7 @@ Rails.application.routes.draw do
   root 'pages#home'
   get 'about', to: 'pages#about'
   resources :articles
+  resources :users, except: [:new]
+  get 'signup', to: 'users#new'
   # "resources :articles" provides REST-ful routes to Rails resources (including index, show, edit, create, new, update (post & patch), destroy)
 end
