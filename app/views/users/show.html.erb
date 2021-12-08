@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<h1 class="text-center pt-4 pb-4"><%= @user.username %>'s Profile</h1>
+	<%= gravatar_for @user, size: 200 %>
+	<h3 class="text-center pt-4 pb-4">Articles</h3>
+	<div class="container pb-4">
+		<% @user.articles.each do |article| %>
+			<%= render 'articles/article_card', article: article %>
+		<% end %>
+	</div>
+</body>
+</html>
