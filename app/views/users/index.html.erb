@@ -8,10 +8,16 @@
 </head>
 <body>
 	<h1 class="text-center pt-4 pb-4">Alpha Bloggers</h1>
+	<div class="flickr_pagination pb-4">
+		<%= will_paginate @users, :container => false %>
+	</div>
 	<div class="container pb-4">
 		<% @users.each do |user| %>
 			<%= render 'user_card', user: user %>
 		<% end %>
+	</div>
+	<div class="flickr_pagination pb-4">
+		<%= will_paginate @users, :container => false %>
 	</div>
 </body>
 </html>

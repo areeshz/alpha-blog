@@ -1,6 +1,12 @@
 <h1 class="text-center pt-4 pb-4">Listing all articles</h1>
 <div class="container pb-4">
+	<div class="flickr_pagination mb-4">
+		<%= will_paginate @articles, :container => false %>
+	</div>
 	<% @articles.each do |article| %>
 		<%= render 'article_card', article: article %>
 	<% end %>
+	<div class="flickr_pagination">
+		<%= will_paginate @articles, :container => false %>
+	</div>
 </div>
