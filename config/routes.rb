@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   # "resources :articles" provides REST-ful routes to Rails resources (including index, show, edit, create, new, update (post & patch), destroy)
+
+  resources :categories, except: [:destroy]
 end
