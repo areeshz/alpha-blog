@@ -8,4 +8,7 @@ class Article < ApplicationRecord
 	# So an article must have a user.
 	# It can be made optional with "belongs_to :user, optional: true"
 	belongs_to :user
+
+	has_many :article_categories
+	has_many :categories, through: :article_categories
 end
