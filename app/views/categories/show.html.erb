@@ -1,1 +1,13 @@
-<h1 class="text-center pt-4 pb-4">Category: <%= @category.name %></h1>
+<h1 class="text-center pt-4 pb-4"><%= @category.name %></h1>
+
+<div class="flickr_pagination pb-4">
+	<%= will_paginate @articles, :container => false %>
+</div>
+<div class="container pb-4">
+	<% @articles.each do |article| %>
+		<%= render 'articles/article_card', article: article %>
+	<% end %>
+</div>
+<div class="flickr_pagination pb-4">
+	<%= will_paginate @articles, :container => false %>
+</div>
